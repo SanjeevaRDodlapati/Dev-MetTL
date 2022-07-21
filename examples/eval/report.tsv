@@ -1,0 +1,17 @@
+metric	output	value
+acc	cpg/cell1	0.9296875
+acc	cpg/cell2	0.8970059880239521
+auc	cpg/cell1	0.6919868476491126
+auc	cpg/cell2	0.6319813153110263
+f1Neg	cpg/cell1	0.0
+f1Neg	cpg/cell2	0.0
+f1Pos	cpg/cell1	0.9635627530364372
+f1Pos	cpg/cell2	0.9457070707070708
+mcc	cpg/cell1	0.0
+mcc	cpg/cell2	0.0
+n	cpg/cell1	2688.0
+n	cpg/cell2	2505.0
+tnr	cpg/cell1	0.0
+tnr	cpg/cell2	0.0
+tpr	cpg/cell1	1.0
+tpr	cpg/cell2	1.0
