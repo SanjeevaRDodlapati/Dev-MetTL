@@ -8,10 +8,10 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 
-setup(name='transfer',
+setup(name='metTL',
       version='1.0.0',
       description='Transfer learning for predicting CpG methylation',
-      long_description=read('README.rst'),
+      long_description=read('README.md'),
       author='Sanjeeva Reddy Dodlapati',
       author_email='sdodl001@odu.edu',
       license="MIT",

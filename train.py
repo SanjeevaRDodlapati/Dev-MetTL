@@ -1,8 +1,9 @@
-'''
-Created on Dec 22, 2020
+"""
+Parts of the code in this file adopted from deepcpg: https://github.com/cangermueller/deepcpg
 
 @author: Javon
-'''
+@author: Sanjeeva Reddy Dodlapati
+"""
 
 from __future__ import print_function
 from __future__ import division

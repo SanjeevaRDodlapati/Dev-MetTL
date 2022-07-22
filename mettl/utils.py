@@ -1,4 +1,9 @@
-"""General-purpose functions."""
+"""General-purpose functions.
+Parts of the code in this file adopted from deepcpg: https://github.com/cangermueller/deepcpg
+
+@author: Javon
+@author: Sanjeeva Reddy Dodlapati
+"""
 
 from __future__ import division
 from __future__ import print_function

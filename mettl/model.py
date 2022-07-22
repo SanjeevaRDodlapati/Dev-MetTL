@@ -67,11 +67,11 @@ class Model(object):
         pass
 
 
-class CpgModel(Model):
+class MetNet(Model):
     """Abstract class of a CpG model."""
 
     def __init__(self, *args, **kwargs):
-        super(CpgModel, self).__init__(*args, **kwargs)
+        super(MetNet, self).__init__(*args, **kwargs)
         self.scope = 'cpg'
 
     def inputs(self, cpg_wlen, replicate_names):
@@ -85,7 +85,7 @@ class CpgModel(Model):
         return concatenate(inputs, axis=2)
 
 
-class RnnL1(CpgModel):
+class MetRnnL1(MetNet):
     """Bidirectional GRU with one layer.
 
     .. code::
@@ -95,7 +95,7 @@ class RnnL1(CpgModel):
     """
 
     def __init__(self, act_replicate='relu', *args, **kwargs):
-        super(RnnL1, self).__init__(*args, **kwargs)
+        super(MetRnnL1, self).__init__(*args, **kwargs)
         self.act_replicate = act_replicate
 
     def _replicate_model(self, input):
@@ -122,18 +122,18 @@ class RnnL1(CpgModel):
         return self._build(inputs, x)
 
 
-class DnaModel(Model):
+class SeqNet(Model):
     """Abstract class of a DNA model."""
 
     def __init__(self, *args, **kwargs):
-        super(DnaModel, self).__init__(*args, **kwargs)
+        super(SeqNet, self).__init__(*args, **kwargs)
         self.scope = 'dna'
 
     def inputs(self, dna_wlen):
         return [kl.Input(shape=(dna_wlen, 4), name='dna')]
 
 
-class CnnL1h128(DnaModel):
+class SeqCnnL1h128(SeqNet):
     """CNN with one convolutional and one fully-connected layer with 128 units.
 
     .. code::
@@ -143,7 +143,7 @@ class CnnL1h128(DnaModel):
     """
 
     def __init__(self, nb_hidden=128, *args, **kwargs):
-        super(CnnL1h128, self).__init__(*args, **kwargs)
+        super(SeqCnnL1h128, self).__init__(*args, **kwargs)
         self.nb_hidden = nb_hidden
 
     def __call__(self, inputs):
@@ -168,7 +168,7 @@ class CnnL1h128(DnaModel):
         return self._build(inputs, x)
 
 
-class CnnL1h256(CnnL1h128):
+class SeqCnnL1h256(SeqCnnL1h128):
     """CNN with one convolutional and one fully-connected layer with 256 units.
 
     .. code::
@@ -178,11 +178,11 @@ class CnnL1h256(CnnL1h128):
     """
 
     def __init__(self, *args, **kwargs):
-        super(CnnL1h256, self).__init__(*args, **kwargs)
+        super(SeqCnnL1h256, self).__init__(*args, **kwargs)
         self.nb_hidden = 256
 
 
-class CnnL2h128(DnaModel):
+class SeqCnnL2h128(SeqNet):
     """CNN with two convolutional and one fully-connected layer with 128 units.
 
     .. code::
@@ -192,7 +192,7 @@ class CnnL2h128(DnaModel):
     """
 
     def __init__(self, nb_hidden=128, *args, **kwargs):
-        super(CnnL2h128, self).__init__(*args, **kwargs)
+        super(SeqCnnL2h128, self).__init__(*args, **kwargs)
         self.nb_hidden = nb_hidden
 
     def __call__(self, inputs):
@@ -228,7 +228,7 @@ class CnnL2h128(DnaModel):
         return self._build(inputs, x)
 
 
-class CnnL2h256(CnnL2h128):
+class SeqCnnL2h256(SeqCnnL2h128):
     """CNN with two convolutional and one fully-connected layer with 256 units.
 
     .. code::
@@ -238,15 +238,15 @@ class CnnL2h256(CnnL2h128):
     """
 
     def __init__(self, *args, **kwargs):
-        super(CnnL2h256, self).__init__(*args, **kwargs)
+        super(SeqCnnL2h256, self).__init__(*args, **kwargs)
         self.nb_hidden = 256
 
 
-class JointModel(Model):
+class JointNet(Model):
     """Abstract class of a Joint model."""
 
     def __init__(self, *args, **kwargs):
-        super(JointModel, self).__init__(*args, **kwargs)
+        super(JointNet, self).__init__(*args, **kwargs)
         self.mode = 'concat'
         self.scope = 'joint'
 
@@ -271,7 +271,7 @@ class JointModel(Model):
         return model
 
 
-class JointL0(JointModel):
+class JointL0(JointNet):
     """Concatenates inputs without trainable layers.
 
     .. code::
@@ -283,7 +283,7 @@ class JointL0(JointModel):
         return self._build(models)
 
 
-class JointL1h512(JointModel):
+class JointL1h512(JointNet):
     """One fully-connected layer with 512 units.
 
     .. code::
