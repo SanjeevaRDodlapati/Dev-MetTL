@@ -69,5 +69,5 @@ Contact
 =======
 * Sanjeeva Dodlapati
 * sdodl001@odu.edu
-* https://sdodlapati.com
+* https://reddydodlapati.com
 * [@dodlapati_reddy](https://twitter.com/dodlapati_reddy)
